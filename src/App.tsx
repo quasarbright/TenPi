@@ -1,9 +1,10 @@
-import {Note} from "./Note";
+import React from "react";
+import {CreateNote} from "./CreateNote";
 
 function App() {
     return (
         <div className="App">
-            <Note/>
+            <CreateNote/>
         </div>
     );
 }
