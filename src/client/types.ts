@@ -4,7 +4,11 @@ export interface Note {
     id: string
 }
 
+export interface CreateNoteProps {
+    title?: string
+}
+
 export interface Client {
-    createNote(encryptedText: string): Note
+    createNote(encryptedBody: string, props?: CreateNoteProps): Note
     getNoteById(id: string): Note | undefined
 }

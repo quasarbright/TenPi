@@ -1,4 +1,4 @@
-import {Client, Note} from "./types";
+import {Client, CreateNoteProps, Note} from "./types";
 
 
 export class InMemoryClient implements Client {
@@ -8,9 +8,9 @@ export class InMemoryClient implements Client {
         this.notes = []
     }
 
-    createNote(encryptedBody: string): Note {
+    createNote(encryptedBody: string, {title}: CreateNoteProps): Note {
         const id = crypto.randomUUID()
-        return {id, encryptedBody}
+        return {id, encryptedBody, title}
     }
 
     getNoteById(id: string): Note {

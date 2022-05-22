@@ -5,5 +5,5 @@ export interface ClientContextProps {
     client: Client
 }
 
-export const ClientContext = React.createContext({})
+export const ClientContext = React.createContext({} as ClientContextProps)
 export const useClientContext = () => useContext(ClientContext)
