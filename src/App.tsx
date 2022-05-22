@@ -1,10 +1,12 @@
-import React from "react";
 import {CreateNote} from "./CreateNote";
+import {InMemoryClientProvider} from "./InMemoryClientProvider";
 
 function App() {
     return (
         <div className="App">
-            <CreateNote/>
+            <InMemoryClientProvider>
+                <CreateNote/>
+            </InMemoryClientProvider>
         </div>
     );
 }
