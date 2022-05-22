@@ -1,13 +1,13 @@
 import {CreateNote} from "./CreateNote";
-import {InMemoryClientProvider} from "./InMemoryClientProvider";
+import {Route, Routes} from "react-router-dom";
+import {ViewNotePage} from "./ViewNote";
 
 function App() {
     return (
-        <div className="App">
-            <InMemoryClientProvider>
-                <CreateNote/>
-            </InMemoryClientProvider>
-        </div>
+        <Routes>
+            <Route path={"/"} element={<CreateNote/>}/>
+            <Route path={":id"} element={<ViewNotePage/>}/>
+        </Routes>
     );
 }
 

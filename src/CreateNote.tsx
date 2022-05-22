@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {encrypt} from "./cryptography";
 import {useClientContext} from "./ClientContext";
+import {useNavigate} from "react-router-dom";
 
 export const CreateNote = () => {
     const [title, setTitle] = useState("")
@@ -8,9 +9,11 @@ export const CreateNote = () => {
     const [key, setKey] = useState("")
     const encryptedBody = encrypt(noteContents, key)
     const {client} = useClientContext()
+    const navigate = useNavigate()
 
     function onCreate() {
-        client.createNote(encryptedBody)
+        const {id} = client.createNote(encryptedBody)
+        navigate(`/${id}`)
     }
 
     return (
