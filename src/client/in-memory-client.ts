@@ -10,7 +10,9 @@ export class InMemoryClient implements Client {
 
     createNote(encryptedBody: string, props: CreateNoteProps): Note {
         const id = crypto.randomUUID()
-        return {id, encryptedBody, title: props?.title}
+        const note = {id, encryptedBody, title: props?.title}
+        this.notes.push(note)
+        return note
     }
 
     getNoteById(id: string): Note {

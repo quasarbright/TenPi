@@ -12,32 +12,38 @@ export const ViewNotePage = () => {
 export const ViewNote = ({id}: {id: string}) => {
     const {client} = useClientContext()
     const note = client.getNoteById(id)
-    return (
-        <NoteInfo
-            title={note?.title}
-            encryptedBody={note.encryptedBody}
-            id={note.id}
-        />
-    )
+    if (note) {
+        return (
+            <NoteInfo
+                title={note?.title}
+                encryptedBody={note.encryptedBody}
+                id={note.id}
+            />
+        )
+    } else {
+        return (<p>404: note not found</p>)
+    }
 }
 
 export const NoteInfo = ({title, encryptedBody}: Note) => {
     const [key, setKey] = useState("")
-    const decryptedBody = decrypt(encryptedBody, key)
+    const [decryptedBody, setDecryptedBody] = useState("")
+    function updateDecryptedBody() {
+        setDecryptedBody(decrypt(encryptedBody, key))
+    }
     return (
         <>
             {!title ? null :
-                <>
                     <h1>{title}</h1>
-                    <br/>
-                </>}
+            }
             key:
             <input
                 type={"password"}
                 value={key}
                 onChange={(event) => setKey(event.target.value)}
             />
-            {key === "" ? null :
+            <button onClick={() => updateDecryptedBody()}>decrypt</button>
+            {decryptedBody === "" ? null :
                 <>
                     <br/>
                     decrypted body:
